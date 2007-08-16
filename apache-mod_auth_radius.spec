@@ -7,7 +7,7 @@
 Summary:	Mod_radius is a DSO module for the apache Web server
 Name:		apache-%{mod_name}
 Version:	1.5.7
-Release:	%mkrel 8
+Release:	%mkrel 9
 Group:		System/Servers
 License:	Apache License
 URL:		http://www.freeradius.org/mod_auth_radius/
@@ -71,5 +71,3 @@ fi
 %doc README htaccess httpd.conf index.html
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/httpd/modules.d/%{mod_conf}
 %attr(0755,root,root) %{_libdir}/apache-extramodules/%{mod_so}
-
-
