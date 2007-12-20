@@ -24,6 +24,7 @@ Requires:	apache-conf >= %{apache_version}
 Requires:	apache >= %{apache_version}
 BuildRequires:  apache-devel >= %{apache_version}
 Epoch:		2
+BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 Make apache a RADIUS client for authentication and accounting requests.
