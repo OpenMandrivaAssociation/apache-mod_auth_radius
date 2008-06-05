@@ -7,7 +7,7 @@
 Summary:	DSO module for the apache Web server
 Name:		apache-%{mod_name}
 Version:	1.5.7
-Release:	%mkrel 13
+Release:	%mkrel 14
 Group:		System/Servers
 License:	Apache License
 URL:		http://www.freeradius.org/mod_auth_radius/
@@ -24,7 +24,7 @@ Requires:	apache-conf >= %{apache_version}
 Requires:	apache >= %{apache_version}
 BuildRequires:  apache-devel >= %{apache_version}
 Epoch:		2
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Make apache a RADIUS client for authentication and accounting requests.
