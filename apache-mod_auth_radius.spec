@@ -6,16 +6,14 @@
 
 Summary:	DSO module for the apache Web server
 Name:		apache-%{mod_name}
-Version:	1.5.7
-Release:	%mkrel 16
+Version:	1.5.8
+Release:	%mkrel 1
 Group:		System/Servers
 License:	Apache License
 URL:		http://www.freeradius.org/mod_auth_radius/
-Source0:	ftp://ftp.freeradius.org/pub/radius/mod_auth_radius.tar.bz2
+Source0:	ftp://ftp.freeradius.org/pub/radius/mod_auth_radius-%{version}.tar.gz
 Source1:	%{mod_conf}
-Patch0:		mod_auth_radius-1.5.7-CAN2005-0108.diff
-Patch1:		mod_auth_radius-2.0.c.diff
-Patch2:		mod_auth_radius-1.5.7-apr1.diff
+Patch0:		mod_auth_radius-1.5.8-CAN2005-0108.diff
 Requires(pre): rpm-helper
 Requires(postun): rpm-helper
 Requires(pre):  apache-conf >= %{apache_version}
@@ -33,8 +31,6 @@ Make apache a RADIUS client for authentication and accounting requests.
 
 %setup -q -n mod_auth_radius-%{version}
 %patch0 -p0
-%patch1 -p0
-%patch2 -p0
 
 cp mod_auth_radius-2.0.c mod_auth_radius.c
 cp %{SOURCE1} %{mod_conf}
@@ -43,7 +39,7 @@ cp %{SOURCE1} %{mod_conf}
 %{_sbindir}/apxs -c mod_auth_radius.c -Wl,-lresolv
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 install -d %{buildroot}%{_libdir}/apache-extramodules
 install -d %{buildroot}%{_sysconfdir}/httpd/modules.d
@@ -64,7 +60,7 @@ if [ "$1" = "0" ]; then
 fi
 
 %clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
