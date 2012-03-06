@@ -12,6 +12,7 @@ License:	Apache License
 URL:		http://www.freeradius.org/mod_auth_radius/
 Source0:	ftp://ftp.freeradius.org/pub/radius/mod_auth_radius-%{version}.tar.gz
 Patch0:		mod_auth_radius-1.5.8-CAN2005-0108.diff
+Patch1:		mod_auth_radius-1.5.8-apache241.diff
 Requires(pre): rpm-helper
 Requires(postun): rpm-helper
 Requires:	apache >= %{apache_version}
@@ -25,6 +26,7 @@ Make apache a RADIUS client for authentication and accounting requests.
 
 %setup -q -n mod_auth_radius-%{version}
 %patch0 -p0
+%patch1 -p0
 
 cp mod_auth_radius-2.0.c mod_auth_radius.c
 
@@ -39,7 +41,7 @@ install -d %{buildroot}%{_sysconfdir}/httpd/modules.d
 install -m0755 .libs/*.so %{buildroot}%{_libdir}/apache/
 
 cat > %{buildroot}%{_sysconfdir}/httpd/modules.d/%{load_order}_%{mod_name}.conf << EOF
-LoadModule radius_auth_module %{_libdir}/%{mod_name}.so
+LoadModule radius_auth_module %{_libdir}/apache/%{mod_name}.so
 EOF
 
 %post
