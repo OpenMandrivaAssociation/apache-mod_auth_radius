@@ -1,0 +1,17 @@
+--- mod_auth_radius-2.0.c	2009-05-26 13:38:06.000000000 +0200
++++ mod_auth_radius-2.0.c.oden	2009-06-21 15:54:58.000000000 +0200
+@@ -993,9 +993,12 @@ find_attribute(radius_packet_t *packet, 
+   }
+   return attr;
+ }
+-#define radcpy(STRING, ATTR) {memcpy(STRING, ATTR->data, ATTR->length - 2); \
+-                              (STRING)[ATTR->length - 2] = 0;}
+ 
++#define radcpy(STRING, ATTR) do { \
++				  unsigned char len = ATTR->length; \
++				  if (len >= 2) len-=2; \
++				  memcpy(STRING, ATTR->data, len); \
++				  (STRING)[len] = 0;} while (0)
+ 
+ /* authentication module utility functions */
+ static int
