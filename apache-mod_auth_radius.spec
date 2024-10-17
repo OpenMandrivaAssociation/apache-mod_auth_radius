@@ -10,7 +10,7 @@ Version:	1.5.8
 Release:	20
 Group:		System/Servers
 License:	Apache License
-URL:		http://www.freeradius.org/mod_auth_radius/
+URL:		https://www.freeradius.org/mod_auth_radius/
 Source0:	ftp://ftp.freeradius.org/pub/radius/mod_auth_radius-%{version}.tar.gz
 Source1:	%{mod_conf}
 Patch0:		mod_auth_radius-1.5.8-CAN2005-0108.diff
